@@ -6,10 +6,7 @@ import org.aopalliance.intercept.Joinpoint;
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.Signature;
-import org.aspectj.lang.annotation.After;
-import org.aspectj.lang.annotation.Around;
-import org.aspectj.lang.annotation.Aspect;
-import org.aspectj.lang.annotation.Before;
+import org.aspectj.lang.annotation.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
@@ -29,6 +26,21 @@ public class LoggingAspect {
 
     @Autowired
     TimeLogRepository timeRepo;
+
+    @Pointcut("execution(* com.springboot.controller.DummyController1.*(..))")
+    public void allDummyMethods(){};
+
+    @AfterReturning(value = "allDummyMethods()")
+    public void reportSuccess(JoinPoint jp){
+        Signature sig = jp.getSignature();
+        System.out.println("method: \"" + sig.toString() + "\" ran successfully with no errors");
+    }
+
+    @AfterThrowing(value = "allDummyMethods()", throwing = "e")
+    public void reportFailure(JoinPoint jp, Exception e){
+        Signature sig = jp.getSignature();
+        System.out.println("method: \"" + sig.toString() + "\" failed with exception: " + e.toString());
+    }
 
     @Before(value = "execution(* com.springboot.controller.StudentController.*(..))")
     public void logSomething(JoinPoint jp){
