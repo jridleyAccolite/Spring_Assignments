@@ -10,7 +10,6 @@ public class Student {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "rollno")
-
     private int rollno;
     @Column
     private String name;
