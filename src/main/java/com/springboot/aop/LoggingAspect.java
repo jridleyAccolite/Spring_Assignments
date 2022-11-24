@@ -54,7 +54,7 @@ public class LoggingAspect {
         System.out.println("logging called after method " + signature.toString() + " is called");
     }
 
-    @Around(value = "execution(* com.springboot.controller.StudentController.*(..))")
+    /*@Around(value = "execution(* com.springboot.controller.StudentController.*(..))")
     public void testAround(ProceedingJoinPoint jp){
         //System.out.println("logging called before method");
         float start = System.nanoTime();
@@ -81,6 +81,6 @@ public class LoggingAspect {
         log.setDuration((end-start));
 
         timeRepo.save(log);
-    }
+    }*/
 
 }

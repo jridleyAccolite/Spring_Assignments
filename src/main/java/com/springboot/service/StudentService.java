@@ -23,4 +23,19 @@ public class StudentService {
 
         return studentList;
     }
+
+    public String addStudent(Student student){
+        repo.save(student);
+        return "New Student Successfully added to DB";
+    }
+
+    public String updateStudent(int id, Student student){
+        repo.save(student);
+        return "student number " + id + " updated successfully";
+    }
+
+    public String deleteStudent(int rollno) {
+        repo.deleteById(rollno);
+        return "student number " + rollno + " deleted";
+    }
 }

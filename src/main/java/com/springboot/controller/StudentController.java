@@ -5,8 +5,7 @@ import com.springboot.service.StudentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -25,5 +24,20 @@ public class StudentController {
         List<Student> re = service.getAllStudents();
         
         return new ResponseEntity(re, HttpStatus.OK);
+    }
+
+    @PostMapping("/addstudent")
+    public String addStudent(@RequestBody Student student){
+        return service.addStudent(student);
+    }
+
+    @PutMapping("/student/{studentId}")
+    public String updateStudent(@PathVariable("studentId") int studentId, @RequestBody Student student){
+        return service.updateStudent(studentId, student);
+    }
+
+    @DeleteMapping("/delete/{rollno}")
+    public String deleteStudent(@PathVariable("rollno") int rollno){
+        return service.deleteStudent(rollno);
     }
 }
