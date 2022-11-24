@@ -71,7 +71,8 @@ public class LoggingAspect {
         System.out.println("method executed successfully in " + (end-start) + " nano seconds");
 
         // save log info in db
-        LogEntry log = new LogEntry();
+        ApplicationContext ctx = new ClassPathXmlApplicationContext("config.xml");
+        LogEntry log = (LogEntry) ctx.getBean("log");
         DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
         DateTimeFormatter timeFormatter = DateTimeFormatter.ofPattern("HH:mm");
         log.setDate(LocalDateTime.now().format(dateFormatter));
