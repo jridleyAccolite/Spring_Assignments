@@ -5,14 +5,7 @@ import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.Signature;
 <<<<<<< HEAD
-<<<<<<< HEAD
 import org.aspectj.lang.annotation.*;
-=======
-import org.aspectj.lang.annotation.After;
-import org.aspectj.lang.annotation.Around;
-import org.aspectj.lang.annotation.Aspect;
-import org.aspectj.lang.annotation.Before;
->>>>>>> parent of 703bbe8 (added use of @AfterThrowing and @AfterReturning)
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
@@ -35,7 +28,6 @@ public class LoggingAspect {
     @Autowired
     TimeLogRepository timeRepo;
 
-<<<<<<< HEAD
     @Pointcut("execution(* com.springboot.controller.DummyController1.*(..))")
     public void allDummyMethods(){};
 
@@ -53,8 +45,6 @@ public class LoggingAspect {
 
 =======
 >>>>>>> parent of 8334b5a (added time logger with logging database)
-=======
->>>>>>> parent of 703bbe8 (added use of @AfterThrowing and @AfterReturning)
     @Before(value = "execution(* com.springboot.controller.StudentController.*(..))")
     public void logSomething(JoinPoint jp){
         Signature signature = jp.getSignature();
