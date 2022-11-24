@@ -1,21 +1,21 @@
 package com.springboot.aop;
 
-import com.springboot.model.LogEntry;
-import com.springboot.repo.TimeLogRepository;
 import org.aopalliance.intercept.Joinpoint;
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.Signature;
+<<<<<<< HEAD
 import org.aspectj.lang.annotation.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
+=======
+import org.aspectj.lang.annotation.After;
+import org.aspectj.lang.annotation.Around;
+import org.aspectj.lang.annotation.Aspect;
+import org.aspectj.lang.annotation.Before;
+>>>>>>> parent of 8334b5a (added time logger with logging database)
 import org.springframework.stereotype.Component;
-
-import javax.swing.text.html.parser.Entity;
-import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 
 @Aspect
 @Component
@@ -24,6 +24,7 @@ public class LoggingAspect {
     //PointCut types - execution, args, within
     //Advices - Before, After, AfterReturning, AfterThrowing, Around
 
+<<<<<<< HEAD
     @Autowired
     TimeLogRepository timeRepo;
 
@@ -42,6 +43,8 @@ public class LoggingAspect {
         System.out.println("method: \"" + sig.toString() + "\" failed with exception: " + e.toString());
     }
 
+=======
+>>>>>>> parent of 8334b5a (added time logger with logging database)
     @Before(value = "execution(* com.springboot.controller.StudentController.*(..))")
     public void logSomething(JoinPoint jp){
         Signature signature = jp.getSignature();
@@ -69,17 +72,6 @@ public class LoggingAspect {
         //Signature sig = jp_data.getSignature();
 
         System.out.println("method executed successfully in " + (end-start) + " nano seconds");
-
-        // save log info in db
-        LogEntry log = new LogEntry();
-        DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-        DateTimeFormatter timeFormatter = DateTimeFormatter.ofPattern("HH:mm");
-        log.setDate(LocalDateTime.now().format(dateFormatter));
-        log.setName(jp.getSignature().getName());
-        log.setTime(LocalDateTime.now().format(timeFormatter));
-        log.setDuration((end-start));
-
-        timeRepo.save(log);
     }
 
 }
